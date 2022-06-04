@@ -1,1 +1,1 @@
-export * from './constants';
+export * from './models/default-apigateway';

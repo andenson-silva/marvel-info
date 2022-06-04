@@ -1,0 +1,8 @@
+<div class="comic-list">
+    <div class="comic-wraper" *ngFor="let comic of comics">
+        <div class="comic-front" >
+            <img [src]="comic.thumbnail.path +'.'+ comic.thumbnail.extension" [title]="comic.title" [alt]="comic.title">
+        </div>
+        <span>{{comic.title}}</span>
+    </div>
+</div>
