@@ -1,10 +1,18 @@
 $width_comic_cover: 200px;
 
+.title {
+    // text-align: center;
+}
 .comic-list {
     display: flex;
     flex-wrap: wrap;
+    border: 1px solid black;
+    padding-bottom: 14px;
+    padding-right: 14px;
+    border: 1px solid #0000001c;
 
     .comic-wraper {
+        font-family: 'Bebas Neue', cursive;
         cursor: pointer;
         width: $width_comic_cover;
         margin: 14px 0 0 14px;

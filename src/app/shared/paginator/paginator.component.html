@@ -1,0 +1,9 @@
+<div>
+    <select [formControl]="pageSizeControl">
+        <option *ngFor="let size of pageSizes" [value]="size">{{size}}</option>
+    </select>
+    <button [disabled]="!page" (click)="prevPage()">anterior</button>
+    <p>Total de itens: {{totalLength}}</p>
+    <p>qtd paginas: {{qtdPages}}</p>
+    <button [disabled]="page === qtdPages" (click)="nextPage()">proxima</button>
+</div>
