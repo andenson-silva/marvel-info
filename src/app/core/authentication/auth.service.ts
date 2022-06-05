@@ -1,27 +1,25 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import * as crypto from 'crypto-js';
+import { decryptMarvelKeys } from '@ne-luna/ntl-keys';
+import { Auth } from './auth';
+import * as cryptoJS from 'crypto-js';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private readonly apiKey = environment.apiKey || '';
-    private readonly prvKey = environment.prvApiKey || '';
-
     constructor() { }
-
     /**
      * 
      * @returns array com timestam, apikey e hash de autenticação
      */
     getCredentials(): string[] {
-        
+        const credentials = decryptMarvelKeys(environment.sk)
+        const keys: Auth = JSON.parse(credentials);
+
         const timestamp = new Date().getTime().toString();
 
-        const hash = crypto.MD5(`${timestamp}${this.prvKey}${this.apiKey}`).toString()
-         
-        return [timestamp, this.apiKey, hash];
+        const hash = cryptoJS.MD5(`${timestamp}${keys.prvApiKey}${keys.apiKey}`).toString();
+
+        return [timestamp, keys.apiKey, hash];
     }
-
-
 
 }
