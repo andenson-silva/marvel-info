@@ -1,5 +1,5 @@
 <h1 class="page-title">MARVEL Comics</h1>
-<div class="comic-list">
+<div class="comic-list" *ngIf="comics.length > 0">
     <div class="comic-wraper" *ngFor="let comic of comics">
         <div class="comic-front" >
             <img [src]="comic.thumbnail.path +'.'+ comic.thumbnail.extension" title="click para mais detalhes" [alt]="comic.title">

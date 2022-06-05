@@ -1,21 +1,18 @@
 $width_comic_cover: 200px;
 
-.title {
-    // text-align: center;
-}
 .comic-list {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid black;
-    padding-bottom: 14px;
-    padding-right: 14px;
+    justify-content: center;
+    width: 100%;
     border: 1px solid #0000001c;
 
     .comic-wraper {
         font-family: 'Bebas Neue', cursive;
         cursor: pointer;
-        width: $width_comic_cover;
-        margin: 14px 0 0 14px;
+        width: calc(20% - 24px);
+        min-width: $width_comic_cover;
+        margin: 8px;
         text-align: center;
         overflow-wrap: break-word;
         transition: transform 0.2s;
@@ -32,7 +29,6 @@ $width_comic_cover: 200px;
 .comic-front {
     display: flex;
     justify-content: center;
-    width: $width_comic_cover;
     height: 300px;
     img {
         max-width: 100%;
