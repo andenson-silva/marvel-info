@@ -9,8 +9,7 @@ import { Comic, ComicDataContainer } from './models';
 export class ComicsService {
     constructor(private gateway: ComicsGateway) { }
 
-    listComics(page: number, size = 20): Observable<ComicDataContainer> {
-        const offset = size * (page === 0 ? 0 : page - 1);
+    listComics(offset: number, size: number): Observable<ComicDataContainer> {
         return this.gateway.listComics(offset, size)
             .pipe(map(c => c.data));
     }

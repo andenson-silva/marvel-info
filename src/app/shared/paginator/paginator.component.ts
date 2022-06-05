@@ -4,13 +4,13 @@ import { BehaviorSubject, Observable, Subject, Subscription, takeUntil } from 'r
 import { DataContainer } from './data';
 
 const PAGE_SIZES = [10, 20, 50, 100];
-export type loadPageStrategy = (page: number, size: 10 | 20 | 50 | 100) => Observable<DataContainer>;
+export type loadPageStrategy = (page: number, offset: number) => Observable<DataContainer>;
 type PageSizes = 10 | 20 | 50 | 100;
 
 @Component({
   selector: 'app-paginator',
   templateUrl: './paginator.component.html',
-  styleUrls: ['./paginator.component.css']
+  styleUrls: ['./paginator.component.scss']
 })
 export class PaginatorComponent implements OnInit, OnDestroy {
 
@@ -38,19 +38,23 @@ export class PaginatorComponent implements OnInit, OnDestroy {
     this.pageSizeChanges();
   }
 
-  pageSizeChanges() {
+  pageSizeChanges(): void {
     this.pageSizeControl.valueChanges
-    .pipe(takeUntil(this.destroyed$))
-    .subscribe({
-      next: size => {
-        this.pageSize = size;
-        this.getPage();
-      }
-    })
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe({
+        next: size => {
+          this.pageSize = size;
+          this.page = 0;
+          this.getPage();
+        }
+      })
   }
 
-  getPage() {
-    this.loadPageStrategy(this.page, this.pageSize)
+  getPage(): void {
+
+    let offset = this.page * this.pageSize;
+
+    this.loadPageStrategy(offset, this.pageSize)
       .subscribe({
         next: data => {
           this.totalLength = data.total;
@@ -60,14 +64,18 @@ export class PaginatorComponent implements OnInit, OnDestroy {
 
   }
 
-  nextPage() {
-    ++this.page
+  nextPage(targetPage?: number) {
+    this.page = targetPage || ++this.page;
     this.getPage();
   }
 
-  prevPage() {
-    --this.page
+  prevPage(targetPage?: number) {
+    this.page = targetPage || --this.page;
     this.getPage();
+  }
+
+  get isLastPage(): boolean {
+    return this.page === this.qtdPages;
   }
 
   ngOnDestroy(): void {

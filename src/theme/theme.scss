@@ -1,8 +1,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@100&display=swap');
 
+body {
+    font-family: 'Bebas Neue', cursive; 
+}
+
 .page-title {
-    font-family: 'Bebas Neue', cursive;
     font-size: 40px;
     color: red;
 }
 // font-family: 'Lato', sans-serif;
+@mixin bt-colors-theme {
+    height: 30px;
+    margin: 8px;
+    border: 1px solid red;
+    color: red;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: #ff00002a;
+    }
+    &:disabled {
+        opacity: 0.3;
+        pointer-events: none;
+    }
+}
+
+.mc-select {
+    margin: 12px;
+    border: 1px solid red;
+    border-radius: 4px;
+    padding: 4px;
+    .label {
+        margin-right: 8px;
+    }
+    select {
+        height: 24px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        &:disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+    }
+}
+
+.mc-icon-bt {
+    width: 40px;
+    @include bt-colors-theme();
+}
+
+.link-bt {
+    text-decoration: underline;
+    color: blue;
+    background: none;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    margin: 4px;
+    &:disabled {
+        text-decoration: none;
+        color: red;
+        cursor: default; 
+    }
+}

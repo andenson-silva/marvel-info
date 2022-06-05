@@ -1,9 +1,25 @@
-<div>
-    <select [formControl]="pageSizeControl">
-        <option *ngFor="let size of pageSizes" [value]="size">{{size}}</option>
-    </select>
-    <button [disabled]="!page" (click)="prevPage()">anterior</button>
-    <p>Total de itens: {{totalLength}}</p>
-    <p>qtd paginas: {{qtdPages}}</p>
-    <button [disabled]="page === qtdPages" (click)="nextPage()">proxima</button>
+<div class="paginator">
+    <div class="paginator-info">
+        <span>Quadrinhos: {{totalLength}}</span>
+        <span>Paginas: {{(qtdPages ? qtdPages + 1 : qtdPages )}}</span>
+    </div>
+    <div class="mc-select">
+        <span class="label">Itens por página:</span>
+        <select [formControl]="pageSizeControl">
+            <option *ngFor="let size of pageSizes" [value]="size">{{size}}</option>
+        </select>
+    </div>
+    <button [disabled]="!page" (click)="prevPage()" class="material-symbols-outlined mc-icon-bt">
+        chevron_left
+    </button>
+    <div class="pages-numbers">
+        <button class="link-bt" *ngIf="(page - 1) > 0" (click)="prevPage(page-2)">{{page - 1}}</button>
+        <button class="link-bt" *ngIf="page > 0" (click)="prevPage(page-1)">{{page}}</button>
+        <button class="link-bt" [disabled]="true" >{{page + 1}}</button>
+        <button class="link-bt" *ngIf="!isLastPage" (click)="nextPage(page+1)">{{page + 2}}</button>
+        <button class="link-bt" *ngIf="!isLastPage" (click)="nextPage(page+2)">{{page + 3}}</button>
+    </div>
+    <button [disabled]="isLastPage" (click)="nextPage()" class="material-symbols-outlined mc-icon-bt">
+        chevron_right
+    </button>
 </div>

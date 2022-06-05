@@ -15,8 +15,9 @@ export class ComicsGateway extends DefaultApiGateway {
 
     listComics(offset: number, size: number): Observable<ComicDataWrapper> {
         let params = new HttpParams();
-        params = params.append('limit', `${size}`)
         params = params.append('orderBy', `title`)
+        params = params.append('format', `comic`)
+        params = params.append('limit', `${size}`)
         params = params.append('offset', `${offset}`)
         return this.httpClient.get<ComicDataWrapper>(`${this.apiUrl}/comics`, { params });
     }
