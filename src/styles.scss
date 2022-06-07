@@ -1,6 +1,13 @@
-@import 'theme';
+@import "theme";
 
 html, body { 
-    margin: 0;
-    padding: 0;
+    min-height:100vh; 
+    margin:0; 
+    position:relative;
+}
+
+body::after {
+    content: '';
+    display: block;
+    height: 60px; /* Set same as footer's height */
 }

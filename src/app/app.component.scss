@@ -1,6 +1,17 @@
-.container {
-    $margin: 40px;
-    margin: 0 $margin;
-    width: calc(100% - (2 * #{$margin}));
+@import "variables";
 
+:host {
+    display:flex; 
+    flex-direction:column;
+    justify-content: space-between;
+}
+.container {
+    $padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: calc(100% - (#{$padding} * 2));
+    height: calc(100vh - $footerHeight);
+    overflow-y: auto;
+    padding: 0 $padding;
 }
