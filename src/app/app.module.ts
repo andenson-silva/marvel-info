@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,7 +17,7 @@ import { FooterModule } from './shared/footer';
     CoreModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FooterModule
+    FooterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
