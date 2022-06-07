@@ -11,7 +11,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: calc(100% - (#{$padding} * 2));
-    height: calc(100vh - $footerHeight);
+    height: calc(100vh - ($footerHeight + $menuHeight));
     overflow-y: auto;
     padding: 0 $padding;
 }

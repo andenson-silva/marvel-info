@@ -9,6 +9,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   constructor() { }
-  title = 'mavel-info';
+  title = 'Marvel.info';
 
 }

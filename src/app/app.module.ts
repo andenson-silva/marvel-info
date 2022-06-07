@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { CoreModule } from './core';
 import { FooterModule } from './shared/footer';
+import { MenuModule } from './shared/menu/menu.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FooterModule } from './shared/footer';
     BrowserAnimationsModule,
     AppRoutingModule,
     FooterModule,
+    MenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
