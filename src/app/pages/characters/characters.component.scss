@@ -1,24 +1,29 @@
-:host {
-    // height: 100%;
-    // display: flex;
-    // justify-content: space-between;
-    // flex-direction: column;
-}
 .characters-list {
     .character-wraper {
         display: flex;
         align-items: center;
         flex-direction: column;
         margin-bottom: 16px;
+        padding: 16px;
         -webkit-box-shadow: 0px 0px 6px 0px rgb(0 0 0 / 42%); 
         box-shadow: 0px 0px 6px 0px rgb(0 0 0 / 42%);
-        
-        -moz-column-count: 4;
-        -moz-column-gap: 20px;
-        -webkit-column-count: 4;
-        -webkit-column-gap: 20px;
-        column-count: 4;
-        column-gap: 20px;
+
+        .character-name {
+            color: red;
+        }
+
+        ul {
+            list-style-type: none;
+            -moz-column-count: 3;
+            -moz-column-gap: 20px;
+            -webkit-column-count: 3;
+            -webkit-column-gap: 20px;
+            column-count: 3;
+            column-gap: 20px;
+            li:nth-child(even) {
+                background-color: #ebebeb;
+              }
+        }
     }
 
     .character-pic {
@@ -32,5 +37,12 @@
             max-width: 100%;
             max-height: 100%;
         }
+    }
+
+    .comics-list {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
     }
 }
