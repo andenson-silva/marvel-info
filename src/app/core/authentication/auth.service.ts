@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from 'environments/environment';
 import { decryptMarvelKeys } from '@ne-luna/ntl-keys';
 import { Auth } from './auth';
 import * as cryptoJS from 'crypto-js';

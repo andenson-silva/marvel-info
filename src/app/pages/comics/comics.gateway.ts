@@ -1,8 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DefaultApiGateway } from '@core/util';
+import { MarvelDataWrapper } from '@shared/models';
 import { Observable } from 'rxjs';
-import { DefaultApiGateway } from '../core';
-import { ComicDataWrapper } from './models';
+import { ComicDataContainer } from './models';
 
 @Injectable({
     providedIn: 'root'
@@ -13,12 +14,12 @@ export class ComicsGateway extends DefaultApiGateway {
         super()
     }
 
-    listComics(offset: number, size: number): Observable<ComicDataWrapper> {
+    listComics(offset: number, size: number): Observable<MarvelDataWrapper<ComicDataContainer>> {
         let params = new HttpParams();
         params = params.append('orderBy', `title`)
         params = params.append('format', `comic`)
         params = params.append('limit', `${size}`)
         params = params.append('offset', `${offset}`)
-        return this.httpClient.get<ComicDataWrapper>(`${this.apiUrl}/comics`, { params });
+        return this.httpClient.get<MarvelDataWrapper<ComicDataContainer>>(`${this.apiUrl}/comics`, { params });
     }
 }

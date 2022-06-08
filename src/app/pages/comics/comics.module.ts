@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComicsComponent } from './comics.component';
 import { ComicsRoutingModule } from './comics.routing';
-import { PaginatorModule } from '../shared/paginator/paginator.module';
+import { PaginatorModule } from '@shared/paginator';
 
 
 

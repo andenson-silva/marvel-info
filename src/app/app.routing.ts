@@ -9,15 +9,15 @@ const routes: Routes = [
     },
     {
         path: 'comics',
-        loadChildren: () => import('./comics/comics.module').then(m => m.ComicsModule)
+        loadChildren: () => import('./pages/comics/comics.module').then(m => m.ComicsModule)
     },
     {
-        path: 'stories',
-        loadChildren: () => import('./comics/comics.module').then(m => m.ComicsModule)
+        path: 'series',
+        loadChildren: () => import('./pages/series/series.module').then(m => m.SeriesModule)
     },
     {
         path: 'characters',
-        loadChildren: () => import('./comics/comics.module').then(m => m.ComicsModule)
+        loadChildren: () => import('./pages/comics/comics.module').then(m => m.ComicsModule)
     },
 ];
 

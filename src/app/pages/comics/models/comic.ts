@@ -126,13 +126,3 @@ export interface ComicDataContainer {
     count: number;
     results: Comic[];
 }
-
-export interface ComicDataWrapper {
-    code: number;
-    status: string;
-    copyright: string;
-    attributionText: string;
-    attributionHTML: string;
-    etag: string;
-    data: ComicDataContainer;
-}

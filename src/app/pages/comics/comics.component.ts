@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { loadPageStrategy } from '@shared/paginator';
 import { tap } from 'rxjs';
-import { loadPageStrategy } from '../shared/paginator/paginator.component';
 import { ComicsService } from './comics.service';
 import { Comic } from './models';
 
