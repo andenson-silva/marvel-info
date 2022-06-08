@@ -1,0 +1,45 @@
+$width_comic_cover: 200px;
+:host {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.comic-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: calc(100% - 2px);
+    border: 1px solid #0000001c;
+
+    .comic-wraper {
+        font-family: 'Bebas Neue', cursive;
+        cursor: pointer;
+        width: calc(20% - 24px);
+        min-width: $width_comic_cover;
+        margin: 8px;
+        text-align: center;
+        overflow-wrap: break-word;
+        transition: transform 0.2s;
+        background-color: #FFF;
+        border: 0.5px solid #0000002e;
+        
+        &:hover {
+            transform: scale(1.1);
+            z-index: 1;
+            -webkit-box-shadow: 0px 0px 24px 8px rgba(0,0,0,0.61); 
+            box-shadow: 0px 0px 24px 8px rgba(0,0,0,0.61);
+        }
+    }
+}
+
+
+.comic-front {
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}

@@ -1,0 +1,80 @@
+:host {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.comic-presentation {
+    display: flex;
+    .comic-front {
+        display: flex;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 8px;
+        width: 350px;
+        height: 350px;
+        margin-right: 16px;
+        border: 1px solid #0000002e;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+    .description {
+        p {
+            margin: 12px;
+        }
+    }
+}
+
+.label {
+    font-weight: bold;
+}
+
+.extras {
+    ul {
+        list-style-type: none;
+    }
+    .promo-imgs {
+        display: flex;
+        justify-content: center;
+    }
+
+    .promo-img {
+        display: flex;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 8px;
+        width: 280px;
+        height: 280px;
+        margin: 8px;
+        border: 1px solid #ff00002e;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+}
+
+@media (max-width: 798px) {
+    .comic-presentation {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width: 624px) {
+    .extras {
+        .promo-imgs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}

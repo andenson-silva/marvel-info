@@ -1,0 +1,22 @@
+@import 'variables';
+
+footer {
+    $paddig-top: 16px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: calc(#{$footerHeight} - #{$paddig-top});
+    background-color: rgb(255, 255, 255);
+    margin-top:auto;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #0000001f;
+    padding-top: $paddig-top;
+    p {
+        margin: 0;
+    }
+    a {
+        color: red;
+    }
+} 

@@ -1,0 +1,10 @@
+<h1 class="page-title">MARVEL Comics</h1>
+<div class="comic-list" *ngIf="comics.length > 0">
+    <div class="comic-wraper" *ngFor="let comic of comics" title="click para mais detalhes" (click)="navigateToComic(comic)">
+        <div class="comic-front" >
+            <img [src]="comic.thumbnail.path +'.'+ comic.thumbnail.extension" [alt]="comic.title">
+        </div>
+        <span>{{comic.title}}</span>
+    </div>
+</div>
+<app-paginator [initialOffset]="paginationCache?.offset || 0" [initialPageSize]="paginationCache?.size || 20" totalLabel="Quadrinhos" [loadPageStrategy]="listComicsStrategy"></app-paginator>

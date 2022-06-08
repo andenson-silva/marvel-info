@@ -1,0 +1,18 @@
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffff71;
+    margin: 0 auto;
+    z-index: 9999;
+    
+    img {
+        -webkit-box-shadow: 0px 0px 14px 18px #ffffff;
+        box-shadow: 0px 0px 14px 18px #ffffff;
+    }
+}

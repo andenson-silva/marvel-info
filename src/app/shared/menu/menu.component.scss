@@ -1,0 +1,42 @@
+@import 'variables';
+ 
+:host {
+    -webkit-box-shadow: 0px 9px 7px -4px rgba(0,0,0,0.28); 
+    box-shadow: 0px 9px 7px -4px rgba(0,0,0,0.28);
+    z-index: 2;
+}
+
+.menu {
+    display: flex;
+    height: $menuHeight;
+
+    .title-container {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        padding: 8px;
+        background-color: red;
+        cursor: default;
+        margin: 0;
+    }
+    .app-title {
+        font-size: 24px;
+        line-height: 24px;
+        color: #FFF;
+        border: 1px solid #FFF;
+        padding: 1px;
+    }
+    .links {
+        display: flex;
+        align-items: center;
+    }
+    .link {
+        font-size: 24px;
+        margin: 0 16px;
+        cursor: pointer;
+        color: red;
+        &:hover {
+            color: blue;
+        }
+    }
+}

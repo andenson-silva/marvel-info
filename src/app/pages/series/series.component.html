@@ -1,0 +1,41 @@
+<h1 class="page-title">Séries</h1>
+<div class="series-list" *ngIf="series.length > 0">
+    <div class="serie-wraper" *ngFor="let serie of series">
+        <div class="serie-front" >
+            <img [src]="serie.thumbnail.path +'.'+ serie.thumbnail.extension" [alt]="serie.title">
+        </div>
+        <div class="info-block">
+            <div>
+                <h3 class="title">{{ serie.title }}</h3>
+                <p class="description" *ngIf="serie.description">{{ serie.description }}</p>
+            </div>
+
+            <div *ngIf="serie?.stories?.items?.length">
+                <h5 class="subtitle">Histórias:</h5>
+                <ul class="list">
+                    <li class="item" *ngFor="let story of serie?.stories?.items">{{story.name}}</li>
+                </ul>
+            </div>
+            <div *ngIf="serie?.comics?.items?.length">
+                <h5 class="subtitle">Quadrinhos:</h5>
+                <ul class="list">
+                    <li class="item" *ngFor="let comic of serie?.comics?.items">{{comic.name}}</li>
+                </ul>
+            </div>
+            <div *ngIf="serie?.characters?.items?.length">
+                <h5 class="subtitle">Personagens:</h5>
+                <ul class="list">
+                    <li class="item" *ngFor="let character of serie?.characters?.items">{{character.name}}</li>
+                </ul>
+            </div>
+            <div *ngIf="serie?.creators?.items?.length">
+                <h5 class="subtitle">Criadores:</h5>
+                <ul class="list">
+                    <li class="item" *ngFor="let creator of serie?.creators?.items">{{creator.name}}</li>
+                </ul>
+            </div>
+            <div id="fade-bottom"></div>
+        </div>
+    </div>
+</div>
+<app-paginator totalLabel="Séries" [loadPageStrategy]="listSeriesStrategy"></app-paginator>
