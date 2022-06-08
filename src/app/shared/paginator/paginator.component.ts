@@ -56,7 +56,10 @@ export class PaginatorComponent implements OnInit, OnDestroy {
 
   reloadPaginationHandler(): void {
     this.$reloadPagination.asObservable()
-      .pipe(filter(reload => reload))
+      .pipe(
+        takeUntil(this.destroyed$),
+        filter(reload => reload)
+        )
       .subscribe({
         next: () => {
           this.page = 0;
@@ -77,10 +80,10 @@ export class PaginatorComponent implements OnInit, OnDestroy {
 
           const onePageOnly = this.pageSize > this.totalLength;
           if (onePageOnly) {
-            this.pageSizeControl.disable();
+            this.pageSizeControl.disable({emitEvent: false});
           }
           else {
-            this.pageSizeControl.enable();
+            this.pageSizeControl.enable({emitEvent: false});
           }
         }
       });
@@ -98,7 +101,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   }
 
   get isLastPage(): boolean {
-    return (this.page + 1) === this.qtdPages;
+    return (!this.page && !this.totalLength) || (this.page + 1) === this.qtdPages;
   }
 
   ngOnDestroy(): void {

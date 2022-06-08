@@ -1,0 +1,52 @@
+<ng-container *ngIf="comic">
+    <div>
+        <h2 class="page-title">{{comic.title}}</h2>
+        <div class="comic-presentation">
+            <div class="comic-front">
+                <img [src]="comic.thumbnail.path +'.'+ comic.thumbnail.extension" [alt]="comic.title">
+            </div>
+            <div class="description">
+                <p class="label">Descrição:</p>
+                <p *ngIf="comic.description">{{comic.description}}</p>
+                <p><span class="label">Páginas:</span> {{comic.pageCount}}</p>
+                <p *ngIf="comic.prices[0]"><span class="label">Preço:</span> ${{comic.prices[0].price}}</p>
+                <p *ngIf="comic.prices[1]"><span class="label">Preço da edição digital:</span> ${{comic.prices[1].price}}</p>
+            </div>
+        </div>
+        <div class="extras">
+            <div *ngIf="comic?.characters?.items?.length">
+                <h3>Personagens</h3>
+                <ul>
+                    <li *ngFor="let character of comic.characters?.items">{{ character.name }}</li>
+                </ul>
+            </div>
+            <div *ngIf="comic.series">
+                <h3>Série</h3>
+                <p>{{ comic.series.name }}</p>
+            </div>
+            <div *ngIf="comic.stories?.items?.length">
+                <h3>Histórias</h3>
+                <ul>
+                    <li *ngFor="let character of comic.stories?.items">{{ character.name }}</li>
+                </ul>
+            </div>
+            <div *ngIf="comic.creators?.items?.length">
+                <h3>Criadores</h3>
+                <ul>
+                    <li *ngFor="let creator of comic.creators?.items">{{ creator.name }}</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Imagens promocionais</h3>
+                <div class="promo-imgs">
+                    <div class="promo-img" *ngFor="let img of comic.images">
+                        <img [src]="img.path +'.'+ img.extension" alt="imagem promocional">
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <button class="mc-bt" (click)="back()">voltar</button>
+    </div>
+</ng-container>
