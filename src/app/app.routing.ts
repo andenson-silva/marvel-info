@@ -17,7 +17,7 @@ const routes: Routes = [
     },
     {
         path: 'characters',
-        loadChildren: () => import('./pages/comics/comics.module').then(m => m.ComicsModule)
+        loadChildren: () => import('./pages/characters/characters.module').then(m => m.CharactersModule)
     },
 ];
 

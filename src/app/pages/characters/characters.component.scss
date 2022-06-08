@@ -1,0 +1,36 @@
+:host {
+    // height: 100%;
+    // display: flex;
+    // justify-content: space-between;
+    // flex-direction: column;
+}
+.characters-list {
+    .character-wraper {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 16px;
+        -webkit-box-shadow: 0px 0px 6px 0px rgb(0 0 0 / 42%); 
+        box-shadow: 0px 0px 6px 0px rgb(0 0 0 / 42%);
+        
+        -moz-column-count: 4;
+        -moz-column-gap: 20px;
+        -webkit-column-count: 4;
+        -webkit-column-gap: 20px;
+        column-count: 4;
+        column-gap: 20px;
+    }
+
+    .character-pic {
+        display: flex;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 8px;
+        width: 300px;
+        height: 300px;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+}

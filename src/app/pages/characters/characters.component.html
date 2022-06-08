@@ -1,0 +1,17 @@
+<h1 class="page-title">Personagens</h1>
+<div class="characters-list" *ngIf="characters.length > 0">
+    <div class="character-wraper" *ngFor="let character of characters">
+        <div class="character-pic" >
+            <img [src]="character.thumbnail.path +'.'+ character.thumbnail.extension" [alt]="character.name">
+        </div>
+        <div class="">
+            <div *ngIf="character?.comics?.items?.length">
+                <h5 class="subtitle">Aparece em:</h5>
+                <ul class="list">
+                    <li class="item" *ngFor="let comic of character?.comics?.items">{{comic.name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<app-paginator totalLabel="Personagens" [loadPageStrategy]="listCharactersStrategy"></app-paginator>
