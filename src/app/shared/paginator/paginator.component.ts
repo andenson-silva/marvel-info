@@ -5,7 +5,7 @@ import { DataContainer } from './data';
 
 const PAGE_SIZES = [10, 20, 50, 100];
 export type loadPageStrategy = (page: number, offset: number) => Observable<DataContainer>;
-type PageSizes = 10 | 20 | 50 | 100;
+export type PageSizes = 10 | 20 | 50 | 100;
 
 @Component({
   selector: 'app-paginator',
@@ -17,17 +17,18 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   @Input() loadPageStrategy!: loadPageStrategy;
   @Input() totalLength: number = 0;
   @Input() pageSizes = PAGE_SIZES;
-  @Input() initialPageSize: PageSizes = 20;
+  @Input() initialPageSize = 20;
   @Input() autoLoad = true;
   @Input('reloadPagination') $reloadPagination: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   @Input() totalLabel = '';
   private destroyed$ = new Subject();
+  @Input() initialOffset = 0;
   page: number = 0;
-  pageSize: PageSizes = 20;
+  pageSize = 20;
   qtdPages: number = 0;
 
-  pageSizeControl = new FormControl<PageSizes>({value: 20, disabled: true})
+  pageSizeControl = new FormControl({value: 20, disabled: true})
 
   constructor() {
     this.pageSize = this.initialPageSize;
@@ -36,7 +37,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.autoLoad) {
-      this.getPage();
+      this.getPage(this.initialOffset);
     }
     this.pageSizeChanges();
     this.reloadPaginationHandler();
@@ -68,9 +69,17 @@ export class PaginatorComponent implements OnInit, OnDestroy {
       })
   }
 
-  getPage(): void {
+  getPage(initialOffset?: number): void {
 
-    let offset = this.page * this.pageSize;
+    let offset = 0
+
+    if(initialOffset) {
+      offset = initialOffset;
+      this.page = initialOffset / this.pageSize;
+    } else {
+      offset = this.page * this.pageSize;
+    }
+
 
     this.loadPageStrategy(offset, this.pageSize)
       .subscribe({

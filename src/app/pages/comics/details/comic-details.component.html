@@ -6,8 +6,10 @@
                 <img [src]="comic.thumbnail.path +'.'+ comic.thumbnail.extension" [alt]="comic.title">
             </div>
             <div class="description">
-                <p class="label">Descrição:</p>
-                <p *ngIf="comic.description">{{comic.description}}</p>
+                <ng-container *ngIf="comic.description">
+                    <p class="label">Descrição:</p>
+                    <p>{{comic.description}}</p>
+                </ng-container>
                 <p><span class="label">Páginas:</span> {{comic.pageCount}}</p>
                 <p *ngIf="comic.prices[0]"><span class="label">Preço:</span> ${{comic.prices[0].price}}</p>
                 <p *ngIf="comic.prices[1]"><span class="label">Preço da edição digital:</span> ${{comic.prices[1].price}}</p>

@@ -34,7 +34,6 @@ export class ComicDetailsComponent implements OnInit {
   }
 
   back(): void {
-    this.comicStore.clear();
     this.router.navigate(['../..'], { relativeTo: this.route });
   }
 

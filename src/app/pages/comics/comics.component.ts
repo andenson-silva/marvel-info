@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { loadPageStrategy } from '@shared/paginator';
-import { ComicDetailsStore } from './details/comic-detail.store';
+import { ComicDetailsStore, ComicDetailsStoreData } from './details/comic-detail.store';
 import { tap } from 'rxjs';
 import { ComicsService } from './comics.service';
 import { Comic } from './models';
@@ -13,12 +13,15 @@ import { Comic } from './models';
 })
 export class ComicsComponent implements OnInit {
 
-  listComicsStrategy: loadPageStrategy = (page, size) => {
-    return this.comicService.listComics(page, size)
+  paginationCache!: ComicDetailsStoreData['paginationCache'];
+
+  listComicsStrategy: loadPageStrategy = (offset, size) => {
+    this.paginationCache = { offset, size };
+    return this.comicService.listComics(offset, size)
       .pipe(tap(comics => {
         this.comics = comics.results;
       })
-      )
+      );
   };
 
   comics: Comic[] = [];
@@ -28,14 +31,20 @@ export class ComicsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private comicStore: ComicDetailsStore,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
+    const data = this.comicStore.data;
+
+    if(data) {
+      this.paginationCache = data.paginationCache;
+    }
+    this.comicStore.clear();
   }
 
-  navigateToComic(comic: Comic):void {
-    this.comicStore.setData({comic});
-    this.router.navigate(['details', comic.id], {relativeTo: this.route});
+  navigateToComic(comic: Comic): void {
+    this.comicStore.setData({ comic, paginationCache: { ...this.paginationCache } });
+    this.router.navigate(['details', comic.id], { relativeTo: this.route });
   }
 
 

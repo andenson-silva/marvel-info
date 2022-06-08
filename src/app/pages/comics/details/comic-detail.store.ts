@@ -4,6 +4,7 @@ import { Comic } from "app/pages/comics/models";
 
 export interface ComicDetailsStoreData {
     comic: Comic;
+    paginationCache: {offset: number, size: number};
 }
 
 @Injectable()
