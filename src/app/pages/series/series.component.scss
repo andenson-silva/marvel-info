@@ -9,6 +9,56 @@
     flex-direction: column;
 
     .serie-wraper {
+        height: 316px;
+        display: flex;
+        margin-bottom: 16px;
+        -webkit-box-shadow: 0px 0px 6px 0px rgb(0 0 0 / 42%); 
+        box-shadow: 0px 0px 6px 0px rgb(0 0 0 / 42%);
+    }
+    
+    .info-block {
+        overflow-y: auto;
+        flex-grow: 1;
+        .title {
+            margin: 16px 0 16px;
+        }
+        .subtitle {
+            margin: 8px;
+        }
+        .description {
+            font-size: 14px;
+            margin: 4px;
+        }
+        .list {
+            list-style-type: none;
+            margin: 0;
+            font-size: 12px;
+            padding-left: 16px;
+            .item {
+                margin: 4px;
+            }
+        }
+        #fade-bottom {
+            height: 52px;
+            width: 100%;
+            position: sticky;
+            bottom: 0%;
+            background: #020024;
+            background: linear-gradient(180deg, #020024 0%, #00000000 0%, #ffffff 81%);
+        }
 
+    }
+
+    .serie-front {
+        display: flex;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 8px;
+        width: 300px;
+        height: 300px;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
     }
 }
