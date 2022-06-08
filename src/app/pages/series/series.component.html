@@ -1,0 +1,8 @@
+<h1 class="page-title">Histórias</h1>
+<div class="series-list" *ngIf="series.length > 0">
+    <div class="story-wraper" *ngFor="let serie of series">
+        <h3>{{ serie.title }}</h3>
+        <p>{{ serie.description }}</p>
+    </div>
+</div>
+<app-paginator [loadPageStrategy]="listSeriesStrategy"></app-paginator>
