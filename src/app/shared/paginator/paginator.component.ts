@@ -19,6 +19,8 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   @Input() pageSizes = PAGE_SIZES;
   @Input() initialPageSize: PageSizes = 20;
   @Input() autoLoad = true;
+
+  @Input() totalLabel = '';
   private destroyed$ = new Subject();
   page: number = 0;
   pageSize: PageSizes = 20;
