@@ -27,7 +27,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   pageSize: PageSizes = 20;
   qtdPages: number = 0;
 
-  pageSizeControl = new FormControl()
+  pageSizeControl = new FormControl<PageSizes>({value: 20, disabled: true})
 
   constructor() {
     this.pageSize = this.initialPageSize;
@@ -47,7 +47,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyed$))
       .subscribe({
         next: size => {
-          this.pageSize = size;
+          this.pageSize = size || 20;
           this.page = 0;
           this.getPage();
         }
@@ -56,7 +56,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
 
   reloadPaginationHandler(): void {
     this.$reloadPagination.asObservable()
-    .pipe(filter(reload => reload))
+      .pipe(filter(reload => reload))
       .subscribe({
         next: () => {
           this.page = 0;
@@ -73,7 +73,15 @@ export class PaginatorComponent implements OnInit, OnDestroy {
       .subscribe({
         next: data => {
           this.totalLength = data.total;
-          this.qtdPages = Math.ceil((this.totalLength / this.pageSize))
+          this.qtdPages = Math.ceil((this.totalLength / this.pageSize));
+
+          const onePageOnly = this.pageSize > this.totalLength;
+          if (onePageOnly) {
+            this.pageSizeControl.disable();
+          }
+          else {
+            this.pageSizeControl.enable();
+          }
         }
       });
 
@@ -90,7 +98,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   }
 
   get isLastPage(): boolean {
-    return this.page === this.qtdPages;
+    return (this.page + 1) === this.qtdPages;
   }
 
   ngOnDestroy(): void {
