@@ -1,16 +1,24 @@
 <h1 class="page-title">Personagens</h1>
-<div class="characters-list" *ngIf="characters.length > 0">
-    <div class="character-wraper" *ngFor="let character of characters">
-        <div class="character-pic" >
-            <img [src]="character.thumbnail.path +'.'+ character.thumbnail.extension" [alt]="character.name">
-        </div>
-        <h2 class="character-name">{{ character.name }}</h2>
-        <div class="comics-list" *ngIf="character?.comics?.items?.length">
-            <h4>Aparece em:</h4>
-            <ul>
-                <li *ngFor="let comic of character?.comics?.items">{{comic.name}}</li>
-            </ul>
+<div class="content">
+    <div class="characters-filter">
+        <div class="filter-input">
+            <input [formControl]="filterControl" placeholder="Pesquisar por nome..." type="text">
+            <span class="material-symbols-outlined">search</span>
         </div>
     </div>
+    <div class="characters-list">
+        <div class="character-wraper" *ngFor="let character of characters">
+            <div class="character-pic" >
+                <img [src]="character.thumbnail.path +'.'+ character.thumbnail.extension" [alt]="character.name">
+            </div>
+            <h2 class="character-name">{{ character.name }}</h2>
+            <div class="comics-list" *ngIf="character?.comics?.items?.length">
+                <h4>Aparece em:</h4>
+                <ul>
+                    <li *ngFor="let comic of character?.comics?.items">{{comic.name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <app-paginator [reloadPagination]="$reloadPagination" totalLabel="Personagens" [loadPageStrategy]="listCharactersStrategy"></app-paginator>
 </div>
-<app-paginator totalLabel="Personagens" [loadPageStrategy]="listCharactersStrategy"></app-paginator>

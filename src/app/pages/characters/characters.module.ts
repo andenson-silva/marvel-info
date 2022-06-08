@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PaginatorModule } from '@shared/paginator';
 import { CharactersComponent } from './characters.component';
 import { CharactersRoutingModule } from './characters.routing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +14,8 @@ import { CharactersRoutingModule } from './characters.routing';
   imports: [
     CommonModule,
     CharactersRoutingModule,
-    PaginatorModule
+    PaginatorModule,
+    ReactiveFormsModule
   ]
 })
 export class CharactersModule { }

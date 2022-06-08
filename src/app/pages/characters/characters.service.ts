@@ -9,8 +9,8 @@ import { CharactersGateway } from './characters.gateway';
 export class CharactersService {
     constructor(private gateway: CharactersGateway) { }
 
-    list(offset: number, size: number): Observable<CharacterDataContainer> {
-        return this.gateway.listCharacters(offset, size)
+    list(offset: number, size: number, textFilter: string): Observable<CharacterDataContainer> {
+        return this.gateway.listCharacters(offset, size, textFilter)
             .pipe(map(c => c.data));
     }
 }

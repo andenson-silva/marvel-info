@@ -14,8 +14,11 @@ export class CharactersGateway extends DefaultApiGateway {
         super()
     }
 
-    listCharacters(offset: number, size: number): Observable<MarvelDataWrapper<CharacterDataContainer>> {
+    listCharacters(offset: number, size: number, textFilter: string): Observable<MarvelDataWrapper<CharacterDataContainer>> {
         let params = new HttpParams();
+        if (textFilter) {
+            params = params.append('nameStartsWith', `${textFilter}`)
+        }
         params = params.append('orderBy', `name`)
         params = params.append('limit', `${size}`)
         params = params.append('offset', `${offset}`)

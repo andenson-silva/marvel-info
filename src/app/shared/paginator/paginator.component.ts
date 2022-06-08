@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, Observable, Subject, Subscription, takeUntil } from 'rxjs';
+import { BehaviorSubject, filter, Observable, Subject, Subscription, takeUntil } from 'rxjs';
 import { DataContainer } from './data';
 
 const PAGE_SIZES = [10, 20, 50, 100];
@@ -19,6 +19,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   @Input() pageSizes = PAGE_SIZES;
   @Input() initialPageSize: PageSizes = 20;
   @Input() autoLoad = true;
+  @Input('reloadPagination') $reloadPagination: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   @Input() totalLabel = '';
   private destroyed$ = new Subject();
@@ -38,6 +39,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
       this.getPage();
     }
     this.pageSizeChanges();
+    this.reloadPaginationHandler();
   }
 
   pageSizeChanges(): void {
@@ -46,6 +48,17 @@ export class PaginatorComponent implements OnInit, OnDestroy {
       .subscribe({
         next: size => {
           this.pageSize = size;
+          this.page = 0;
+          this.getPage();
+        }
+      })
+  }
+
+  reloadPaginationHandler(): void {
+    this.$reloadPagination.asObservable()
+    .pipe(filter(reload => reload))
+      .subscribe({
+        next: () => {
           this.page = 0;
           this.getPage();
         }
